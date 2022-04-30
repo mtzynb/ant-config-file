@@ -1,0 +1,31 @@
+<project default="package">
+
+	<property name="PROJECT_ADDRESS" value="C:/ROOT/erp"/>
+
+	<target name="clean">
+		<echo>'clean executed'</echo>
+		<delete dir="${PROJECT_ADDRESS}/jar"/>
+		<delete dir="${PROJECT_ADDRESS}/out"/>
+	</target>
+	
+	<target name="create" depends="clean">
+		<echo>'create executed'</echo>
+		<mkdir dir="${PROJECT_ADDRESS}/jar"/>
+		<mkdir dir="${PROJECT_ADDRESS}/out"/>
+	</target>
+
+	<target name="compile" depends="create">
+		<echo>'compile executed'</echo>
+		<javac srcdir="src" destdir="${PROJECT_ADDRESS}/out"/>
+	</target>
+
+	<target name="package" depends="compile">
+		<echo>'package executed'</echo>
+		<jar destfile="${PROJECT_ADDRESS}/jar/ERP.jar" basedir="${PROJECT_ADDRESS}/out">
+			<manifest>
+				<attribute name="Main-Class" value="org.j2os.project.Main"/>
+			</manifest>
+		</jar>
+	</target>
+
+</project>
